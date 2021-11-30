@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+   
+<body>
+    <h1> Тест Json</h1>
+    <div id = "debug"></div>
+    <script>
+        function fakeData()
+            {
+                return {faculty: 'ТестИТ',
+                    formOfEdu: 'очная',
+                    cource: '4',
+                    weekId: '18',
+                    group: {}
+                }
+            }
+    
+            fetch("http://18.185.249.19/api/commands/21112")
+        .then (response => fakeData()) //response.json())
+        .then(data => {
+            element = document.querySelector("#debug")
+            element.innerText = data.weekId
+        })
+    </script>    
+</body>
+</html>
