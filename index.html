@@ -1,26 +1,77 @@
 <!DOCTYPE html>
 <html>
-   
+<head>
+    <script>
+
+        function fakeData()
+        {
+            return {faculty: 'ТестИТ',
+                formOfEdu: 'очная',
+                cource: '4',
+                weekId: '18',
+                group: Array(2)
+            }
+        }
+        function getSelectValue(selector)
+        {
+            select = document.querySelector(selector)
+            return select.options[select.selectedIndex].value
+        }
+        function MakeQuery()
+        {
+            // week = 12
+            // val1 = getSelectValue("#sel1")
+            // val2 = getSelectValue("#sel2")
+            // val3 = getSelectValue("#sel3")
+            // url = "http://18.185.249.19/api/commands/" + val1 + val2 + val3 + week
+            // fetch(url)
+            // .then (response => response.json())
+            // .then(data => { presentData(data) })
+            presentData(fakeData())
+        }
+        function presentData(data)
+        {
+            let html = ""
+            for (i = 0; i < data.group.length; i++)
+            {
+                html += GetHTMLForGroup(data.group[i])
+            }
+            let tables_div = document.querySelector("#tables")
+            tables_div.innerHTML = html
+        }
+        function GetHTMLForGroup(group)
+        {
+            result = "<table border==\"1\"><tr>"
+            // for (var i = 0; i < data.length; i++) {
+            // 	document.write('<tr>');
+            // 	    for (key in data[i]) {
+            //   	        document.write('<td>' + data[i][key] + '</td>');
+            //             }
+            return result + "</tr></table>"
+        }
+    </script>        
+</head>   
 <body>
     <h1> Тест Json</h1>
     <div id = "debug"></div>
-    <script>
-        function fakeData()
-            {
-                return {faculty: 'ТестИТ',
-                    formOfEdu: 'очная',
-                    cource: '4',
-                    weekId: '18',
-                    group: {}
-                }
-            }
-    
-            fetch("http://18.185.249.19/api/commands/21112")
-        .then (response => fakeData()) //response.json())
-        .then(data => {
-            element = document.querySelector("#debug")
-            element.innerText = data.weekId
-        })
-    </script>    
+    <select id = "sel1">
+        <option disabled> Выберите факультет</option>
+        <option value = "1">ИТ</option>
+        <option value = "2">Ктото</option>
+    </select>
+    <select id = "sel2">
+        <option disabled> Выберите форму обучения</option>
+        <option value="1"> Очная</option>
+        <option value="2"> Заочная </option>
+    </select>
+    <select id = "sel3">
+        <option disabled> Выберите курс</option>
+        <option value="1"> 1</option>
+        <option value="2"> 2 </option>
+        <option value="3"> 3 </option>
+        <option value="4"> 4 </option>
+    </select>
+      <p><input type="submit" value="Отправить" onclick="MakeQuery()"></p>
+    <div id="tables"></div>
 </body>
 </html>
