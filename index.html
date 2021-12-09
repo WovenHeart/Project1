@@ -2,7 +2,6 @@
 <html>
 <head>
     <script>
-
         function fakeData()
         {
             return {faculty: 'ТестИТ',
@@ -19,15 +18,15 @@
         }
         function MakeQuery()
         {
-            // week = 12
-            // val1 = getSelectValue("#sel1")
-            // val2 = getSelectValue("#sel2")
-            // val3 = getSelectValue("#sel3")
-            // url = "http://18.185.249.19/api/commands/" + val1 + val2 + val3 + week
-            // fetch(url)
-            // .then (response => response.json())
-            // .then(data => { presentData(data) })
-            presentData(fakeData())
+             week = 12
+             val1 = getSelectValue("#sel1")
+             val2 = getSelectValue("#sel2")
+             val3 = getSelectValue("#sel3")
+             url = "http://18.185.249.19/api/commands/" + val1 + val2 + val3 + week
+             fetch(url)
+             .then (response => response.json())
+             .then(data => { presentData(data) })
+            //presentData(fakeData())
         }
         function presentData(data)
         {
@@ -73,5 +72,222 @@
     </select>
       <p><input type="submit" value="Отправить" onclick="MakeQuery()"></p>
     <div id="tables"></div>
+    <table class="table table-striped">
+        <tr  class="bg-info">
+            <th>Время</th>
+            <th>Название дисциплины</th>
+            <th>Преподаватель</th>
+        </tr>
+    
+        <tbody id="myTable">
+            
+        </tbody>
+    </table>
+    <script>
+                    	var myArray =[
+          {
+            "dayName": "понедельник",
+            "date": "11/22/2021",
+            "couples": [
+              {
+                "time": "8:20-9:50",
+                "discipline": "Физическая культура и спорт (СПЗ) ",
+                "otherInfo": "ст.пр. Пустовойтов Ю.Л. стадион"
+              },
+              {
+                "time": "10:00-11:30",
+                "discipline": "Русский язык и культура речи (СПЗ) ",
+                "otherInfo": "зам.зав.каф. Рюкина А.А. ауд. 301"
+              },
+              {
+                "time": "11:40-13:10",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "13:45-15:15",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "15:25-16:55",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "17:05-18:35",
+                "discipline": "",
+                "otherInfo": ""
+              }
+            ]
+          },
+   
+          {
+            "dayName": "вторник",
+            "date": "11/23/2021",
+            "couples": [
+              {
+                "time": "8:20-9:50",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "10:00-11:30",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "11:40-13:10",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "13:45-15:15",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "15:25-16:55",
+                "discipline": "Теория управления (СПЗ) ",
+                "otherInfo": "доц. Живага А.Ю. ауд. 321"
+              },
+              {
+                "time": "17:05-18:35",
+                "discipline": "Культура интеллектуального труда (СПЗ) ",
+                "otherInfo": "доц. Суслов А.В. Ауд. 301"
+              }
+            ]
+          },
+   
+          {
+            "dayName": "среда",
+            "date": "11/24/2021",
+            "couples": [
+              {
+                "time": "8:20-9:50",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "10:00-11:30",
+                "discipline": "Русский язык и культура речи (лекция)",
+                "otherInfo": "доц. Бурмистрова С.В. Ауд. 314"
+              },
+              {
+                "time": "11:40-13:10",
+                "discipline": "Иностранный язык 1 (СПЗ) ",
+                "otherInfo": "ст.пр. Юркевич Н.Е. ауд. 431"
+              },
+              {
+                "time": "13:45-15:15",
+                "discipline": "История (история России, всеобщая история) (лекция) ",
+                "otherInfo": "проф. Потатуров В.А. ауд. 302"
+              },
+              {
+                "time": "15:25-16:55",
+                "discipline": "Теория управления (лекция)",
+                "otherInfo": "доц. Живага А.Ю. ауд. 310"
+              },
+              {
+                "time": "17:05-18:35",
+                "discipline": "",
+                "otherInfo": ""
+              }
+            ]
+          },
+   
+          {
+            "dayName": "четверг",
+            "date": "11/25/2021",
+            "couples": [
+              {
+                "time": "8:20-9:50",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "10:00-11:30",
+                "discipline": "Иностранный язык 1 (СПЗ) ",
+                "otherInfo": "ст.пр. Юркевич Н.Е. ауд. 431"
+              },
+              {
+                "time": "11:40-13:10",
+                "discipline": "Экономическая теория 1 (лекция) ",
+                "otherInfo": "доц. Белозерская А.В. Ауд. 302"
+              },
+              {
+                "time": "13:45-15:15",
+                "discipline": "Теория управления (СПЗ) ",
+                "otherInfo": "доц. Живага А.Ю. ауд. 314"
+              },
+              {
+                "time": "15:25-16:55",
+                "discipline": "Правоведение (лекция) ",
+                "otherInfo": "проф. Дорохов Н.И. ауд. 210"
+              },
+              {
+                "time": "17:05-18:35",
+                "discipline": "Математика 1 (лекция)",
+                "otherInfo": "проф. Геворкян Э.А. ауд. 314"
+              }
+            ]
+          },
+   
+          {
+            "dayName": "пятница",
+            "date": "11/26/2021",
+            "couples": [
+              {
+                "time": "8:20-9:50",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "10:00-11:30",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "11:40-13:10",
+                "discipline": "Информатика (лекция) ",
+                "otherInfo": "доц. Ежова Г.Л. Ауд. 433"
+              },
+              {
+                "time": "13:45-15:15",
+                "discipline": "",
+                "otherInfo": ""
+              },
+              {
+                "time": "15:25-16:55",
+                "discipline": "",
+                "otherInfo": ""
+              }
+            ]
+          }
+        ]
+	
+	buildTable(myArray)
+ 
+
+
+
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+                            <td>${data[i].dayName}</td>
+							<td>${data[i].time}</td>
+							<td>${data[i].discipline}</td>
+							<td>${data[i].otherInfo}</td>
+              <tr></tr>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+    </script>
 </body>
+
 </html>
