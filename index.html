@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
     <script>
-        function fakeData()
-        {
-            return {faculty: 'ТестИТ',
-                formOfEdu: 'очная',
-                cource: '4',
-                weekId: '18',
-                group: Array(2)
-            }
-        }
-        function getSelectValue(selector)
+
+        /*function getSelectValue(selector)
         {
             select = document.querySelector(selector)
             return select.options[select.selectedIndex].value
+        }*/ 
+        function changeweek(r) {
+        console.log(r)
+
+        if (r != 0) {
+
+                getmodel(r)
+                document.getElementsByClassName('hidden_3')[0].style.display = "contents"
+
         }
+        else
+        {
+            document.getElementsByClassName('hidden_3')[0].style.display = "none"
+        }
+      }
         function MakeQuery()
         {
              week = 12
