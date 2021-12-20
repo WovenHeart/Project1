@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test Final</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body class="sitebody">
+
+<div class="sel1">
+    <label   class="form-label">Выберите факультет</label>
+    <select class="form-select" onchange="changefaculty(this.value)" id="faculty" required>
+        <option value="0"></option>
+        <option value="1">Факультет информационных технологий</option>
+        <option value="2">Факультет управления</option>
+        <option value="3">Факультет экономики и финансов</option>
+        <option value="4">Факультет юридический</option>
+
+    </select>
+
+</div>
+<div class="hidden" style="display: none">
+    <div class="sel1">
+        <label   class="form-label">Выберите курс</label>
+        <select class="form-select" onchange="changecourse(this.value)" id="course" required>
+
+        </select>
+
+        </div>
+
+
+<div class="hidden_2" style="display: none">
+    <div class="sel1">
+        <label   class="form-label">Выберите неделю</label>
+        <select class="form-select" onchange="changeweek(this.value)" id="week" required>
+
+        </select>
+
+    </div>
+    <div class="hidden_3" style="display: none">
+
+            <table id="tbl1" style>
+
+            </table>
+        
+    </div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+    function changeweek(r) {
+        console.log(r)
+
+        if (r != 0) {
+
+                getmodel(r)
+                document.getElementsByClassName('hidden_3')[0].style.display = "contents"
+
+        }
+        else
+        {
+            document.getElementsByClassName('hidden_3')[0].style.display = "none"
+        }
+    }
+    function changecourse(r) {
+
+        document.getElementById('week').innerHTML=''
+        document.getElementsByClassName('hidden_2')[0].style.display = "none"
+        document.getElementsByClassName('hidden_3')[0].style.display = "none"
+        if (r != 0) {
+            week = document.getElementById("week")
+
+            for (var i = 0; i <= 18; i++) {
+                if (i == 0) {
+                    week.options[week.options.length] = new Option("", 0)
+                } else {
+                    week.options[week.options.length] = new Option(i, "" + r + i)
+                }
+                document.getElementsByClassName('hidden_2')[0].style.display = "contents"
+            }
+        }
+
+    }
+
+    function changefaculty(r) {
+        document.getElementById('course').innerHTML=''
+        document.getElementById('week').innerHTML=''
+        document.getElementsByClassName('hidden')[0].style.display = "none"
+        document.getElementsByClassName('hidden_2')[0].style.display = "none"
+        document.getElementsByClassName('hidden_3')[0].style.display = "none"
+
+        var i=0
+        if (r!=0)
+        {
+            course=document.getElementById("course")
+            arr=["","1 курс","1 курс СПО","2 курс","2 курс СПО","3 курс","3 курс СПО","4 курс","4 курс СПО"]
+            arr.map(function(value)
+            {
+                if (i==0){course.options[course.options.length] = new Option(value,0)}
+                else{
+                    course.options[course.options.length] = new Option(value,""+r+"1"+i);
+                }
+
+                i++
+            })
+
+            document.getElementsByClassName('hidden')[0].style.display = "contents"
+        }else
+        {
+            document.getElementsByClassName('hidden')[0].style.display = "none"
+        }
+    }
+
+
+
+    async function getmodel(id) {
+        tbl=document.getElementById("tbl1")
+        maketable="<tr><td>Факультет</br>Форма обучения<br>Курс</td><td>Группа</td></tr>"
+        let response = await fetch("http://18.185.249.19/api/commands/"+id);
+
+        if (response.ok) {
+            let data = await response.json();
+            console.log(data)
+            maketable=maketable+"<tr><td>"+data['faculty']+"</br>"+data["formOfEdu"]+"</br>"+data["cource"]+"</td><td>"
+            console.log(maketable)
+            maketable=maketable+"<table>"
+            arr=data["group"].map(function (value) {
+                maketable=maketable+"<tr><td>"+value['groupName']+"</td><td>"
+                maketable=maketable+"<table>"
+                arr2=value["week"].map(function (value2) {
+                    maketable=maketable+"<tr><td>"+value2['dayName']+" - "+value2['date']+"</td><td>"
+                    arr3=value2["couples"].map(function (value3) {
+                        maketable=maketable+value3['time']+" - "+value3['discipline']+" - "+value3['otherInfo']+"<hr />"
+                    })
+                })
+                maketable=maketable+"</td></table>"
+                maketable=maketable+"</td></tr>"
+            })
+            maketable=maketable+"</td>"
+            tbl.innerHTML=maketable
+            return data
+        } else {
+            alert('error', response.status);
+        }
+    }
+
+
+</script>
+                    
+
+</body>
+</html>
