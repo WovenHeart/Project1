@@ -5,7 +5,7 @@
     <title>Test Final</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    
 </head>
 <body class="sitebody">
 
@@ -54,12 +54,12 @@
 </div>
 
 <script>
-    function changeweek(r) {
-        console.log(r)
+    function changeweek(id) {
+        console.log(id)
 
-        if (r != 0) {
+        if (id != 0) {
 
-                getmodel(r)
+                getmodel(id)
                 document.getElementsByClassName('hidden_3')[0].style.display = "contents"
 
         }
@@ -68,19 +68,19 @@
             document.getElementsByClassName('hidden_3')[0].style.display = "none"
         }
     }
-    function changecourse(r) {
+    function changecourse(id) {
 
         document.getElementById('week').innerHTML=''
         document.getElementsByClassName('hidden_2')[0].style.display = "none"
         document.getElementsByClassName('hidden_3')[0].style.display = "none"
-        if (r != 0) {
+        if (id != 0) {
             week = document.getElementById("week")
 
-            for (var i = 0; i <= 18; i++) {
+            for (var i = 0; i <= 22; i++) {
                 if (i == 0) {
                     week.options[week.options.length] = new Option("", 0)
                 } else {
-                    week.options[week.options.length] = new Option(i, "" + r + i)
+                    week.options[week.options.length] = new Option(i, "" + id + i)
                 }
                 document.getElementsByClassName('hidden_2')[0].style.display = "contents"
             }
@@ -88,7 +88,7 @@
 
     }
 
-    function changefaculty(r) {
+    function changefaculty(id) {
         document.getElementById('course').innerHTML=''
         document.getElementById('week').innerHTML=''
         document.getElementsByClassName('hidden')[0].style.display = "none"
@@ -96,7 +96,7 @@
         document.getElementsByClassName('hidden_3')[0].style.display = "none"
 
         var i=0
-        if (r!=0)
+        if (id!=0)
         {
             course=document.getElementById("course")
             arr=["","1 курс","1 курс СПО","2 курс","2 курс СПО","3 курс","3 курс СПО","4 курс","4 курс СПО"]
@@ -104,7 +104,7 @@
             {
                 if (i==0){course.options[course.options.length] = new Option(value,0)}
                 else{
-                    course.options[course.options.length] = new Option(value,""+r+"1"+i);
+                    course.options[course.options.length] = new Option(value,""+id+"1"+i);
                 }
 
                 i++
@@ -122,7 +122,7 @@
     async function getmodel(id) {
         tbl=document.getElementById("tbl1")
         maketable="<tr><td>Факультет</br>Форма обучения<br>Курс</td><td>Группа</td></tr>"
-        let response = await fetch("http://18.185.249.19/api/commands/"+id);
+        let response = await fetch("https://api.muiv-timetable.cf/api/commands/"+id);
 
         if (response.ok) {
             let data = await response.json();
