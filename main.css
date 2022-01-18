@@ -1,0 +1,22 @@
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+TABLE {
+    background: rgb(192, 192, 192); /* Цвет фона таблицы */
+    border: 5px double rgb(112, 22, 22); /* Рамка вокруг таблицы */
+}
+TD, TH {
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid rgb(112, 22, 22); /* Рамка вокруг ячеек */
+}
